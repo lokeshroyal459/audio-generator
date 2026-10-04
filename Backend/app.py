@@ -132,8 +132,15 @@ def generate_audio_guide():
     ]
     if missing_keys:
         missing = ", ".join(missing_keys)
+        if os.getenv("VERCEL"):
+            setup_instructions = (
+                "Add the missing variables in Vercel Project Settings > "
+                "Environment Variables, then redeploy."
+            )
+        else:
+            setup_instructions = "Add them to Backend/.env and restart the server."
         return jsonify(
-            error=f"Backend configuration incomplete. Add {missing} to Backend/.env and restart the server.",
+            error=f"Backend configuration incomplete. Missing: {missing}. {setup_instructions}",
             missingConfiguration=missing_keys,
         ), 503
 
