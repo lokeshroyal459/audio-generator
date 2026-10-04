@@ -1,28 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "services": {
-    "backend": {
-      "root": "Backend/",
-      "framework": "flask"
-    },
     "frontend": {
       "root": "Frontend/",
       "framework": "vite"
     }
   },
   "rewrites": [
-    {
-      "source": "/generate-audio-guide",
-      "destination": {
-        "service": "backend"
-      }
-    },
-    {
-      "source": "/health",
-      "destination": {
-        "service": "backend"
-      }
-    },
     {
       "source": "/(.*)",
       "destination": {

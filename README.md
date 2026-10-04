@@ -10,8 +10,8 @@ AI-generated travel descriptions and audio guides, with a Vite frontend and Flas
 
 The Vite development server proxies API requests to Flask on `127.0.0.1:5000`.
 
-## Deploy to Vercel
+## Deploy the frontend to Vercel and API to Render
 
-Import this repository into Vercel with the repository root as the project root. The repository's `vercel.json` configures separate Flask and Vite services and routes the guide and health endpoints to Flask.
+Deploy `Frontend/` on Vercel and `Backend/` as a Render Web Service. On Render, use `pip install -r requirements.txt` as the build command and `gunicorn app:app` as the start command.
 
-In Vercel Project Settings → Environment Variables, add `GEMINI_API_KEY` and `MURF_API_KEY` for the environments you use, then redeploy. Never put real API keys in source control; use `Backend/.env` only for local development.
+Set `GEMINI_API_KEY` and `MURF_API_KEY` in the Render service's Environment settings, and set `FRONTEND_ORIGINS` to the Vercel site origin. In Vercel, set `VITE_API_BASE_URL` to the Render service URL, then redeploy the frontend. Never put real API keys in source control; use `Backend/.env` only for local development.

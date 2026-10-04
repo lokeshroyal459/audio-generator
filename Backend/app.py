@@ -11,7 +11,12 @@ from flask_cors import CORS
 load_dotenv(dotenv_path=Path(__file__).with_name(".env"))
 
 app = Flask(__name__)
-CORS(app)
+allowed_origins = [
+    origin.strip()
+    for origin in os.getenv("FRONTEND_ORIGINS", "http://localhost:5173").split(",")
+    if origin.strip()
+]
+CORS(app, resources={r"/*": {"origins": allowed_origins}})
 MURF_API_KEY = os.getenv("MURF_API_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
@@ -132,7 +137,12 @@ def generate_audio_guide():
     ]
     if missing_keys:
         missing = ", ".join(missing_keys)
-        if os.getenv("VERCEL"):
+        if os.getenv("RENDER"):
+            setup_instructions = (
+                "Add the missing variables in the Render service Environment settings, "
+                "then redeploy."
+            )
+        elif os.getenv("VERCEL"):
             setup_instructions = (
                 "Add the missing variables in Vercel Project Settings > "
                 "Environment Variables, then redeploy."

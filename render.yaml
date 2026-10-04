@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: travel-guide-api
+    runtime: python
+    rootDir: Backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    healthCheckPath: /health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: MURF_API_KEY
+        sync: false
+      - key: FRONTEND_ORIGINS
+        sync: false
