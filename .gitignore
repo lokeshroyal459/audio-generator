@@ -9,4 +9,3 @@ Backend/*.py[cod]
 # Frontend dependencies and build output
 Frontend/node_modules/
 Frontend/dist/
-/public/

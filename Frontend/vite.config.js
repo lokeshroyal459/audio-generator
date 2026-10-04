@@ -6,9 +6,5 @@ export default defineConfig({
       '/generate-audio-guide': 'http://127.0.0.1:5000',
       '/health': 'http://127.0.0.1:5000'
     }
-  },
-  build: {
-    outDir: '../public',
-    emptyOutDir: true
   }
 });
