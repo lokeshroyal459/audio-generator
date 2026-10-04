@@ -125,7 +125,10 @@ voiceButtons.forEach(btn => {
 
 // Generate Audio guide button Logic
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
+const API_BASE_URL = (
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.DEV ? '' : 'https://audio-generator-xz4u.onrender.com')
+).replace(/\/$/, '');
 const GENERATE_AUDIO_GUIDE_API_URL = `${API_BASE_URL}/generate-audio-guide`;
 
 generateButton.addEventListener('click', async () => {
